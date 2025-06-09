@@ -238,6 +238,27 @@ https://templatemo.com/tm-571-hexashop
                                 <div class="down-content">
                                     <h4>men's merch</h4>
                                     <span>R1500.00</span>
+                                  <div id="paypal-button-container-P-6KA02772B36861424NBDWLRI"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=AU20XcqOepJkCgwl2kTRwSJNuv5HjVKgldmCGtZwETGvva-mSaPYfns87_87QNFCMnvkLeg7qeHHmwVl&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+<script>
+  paypal.Buttons({
+      style: {
+          shape: 'rect',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'paypal'
+      },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          /* Creates the subscription */
+          plan_id: 'P-6KA02772B36861424NBDWLRI'
+        });
+      },
+      onApprove: function(data, actions) {
+        alert(data.subscriptionID); // You can add optional success message for the subscriber here
+      }
+  }).render('#paypal-button-container-P-6KA02772B36861424NBDWLRI'); // Renders the PayPal button
+</script>
                                     <ul class="stars">
                                         <li><i class="fa fa-star"></i></li>
                                         <li><i class="fa fa-star"></i></li>
@@ -523,16 +544,7 @@ https://templatemo.com/tm-571-hexashop
                                     </ul>
                                 </div>
                             </div>
-                          <div class="item">
-                                <div class="thumb">
-                                    <div class="hover-content">
-                                        <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <img src="<div class="item">
+                              <div class="item">
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
