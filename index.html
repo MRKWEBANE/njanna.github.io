@@ -239,25 +239,37 @@ https://templatemo.com/tm-571-hexashop
                                     <h4>men's merch</h4>
                                     <span>R1500.00</span>
                                   <div id="paypal-button-container-P-6KA02772B36861424NBDWLRI"></div>
-<script src="https://www.paypal.com/sdk/js?client-id=AU20XcqOepJkCgwl2kTRwSJNuv5HjVKgldmCGtZwETGvva-mSaPYfns87_87QNFCMnvkLeg7qeHHmwVl&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AU20XcqOepJkCgwl2kTRwSJNuv5HjVKgldmCGtZwETGvva-mSaPYfns87_87QNFCMnvkLeg7qeHHmwVl&currency=ZAR"></script>
 <script>
   paypal.Buttons({
-      style: {
-          shape: 'rect',
-          color: 'gold',
-          layout: 'vertical',
-          label: 'paypal'
-      },
-      createSubscription: function(data, actions) {
-        return actions.subscription.create({
-          /* Creates the subscription */
-          plan_id: 'P-6KA02772B36861424NBDWLRI'
-        });
-      },
-      onApprove: function(data, actions) {
-        alert(data.subscriptionID); // You can add optional success message for the subscriber here
-      }
-  }).render('#paypal-button-container-P-6KA02772B36861424NBDWLRI'); // Renders the PayPal button
+    style: {
+      shape: 'rect',
+      color: 'gold',
+      layout: 'vertical',
+      label: 'pay'
+    },
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '1500.00',
+            currency_code: 'ZAR'
+          },
+          description: 'Njanna Men\'s Merch'
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        alert('Transaction completed by ' + details.payer.name.given_name);
+        window.location.href = 'thank-you.html';
+      });
+    },
+    onError: function(err) {
+      console.log('Error:', err);
+      alert('An error occurred. Please try again.');
+    }
+  }).render('#paypal-button-container-P-6KA02772B36861424NBDWLRI');
 </script>
                                     <ul class="stars">
                                         <li><i class="fa fa-star"></i></li>
